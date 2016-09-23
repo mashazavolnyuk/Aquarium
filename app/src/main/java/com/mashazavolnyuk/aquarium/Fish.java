@@ -1,23 +1,56 @@
 package com.mashazavolnyuk.aquarium;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 /**
  * Created by Dark Maleficent on 20.09.2016.
  */
 
-public abstract class Fish {
+public class Fish {
 
 
-    private int x=0;
-    private int y=0;
-    private int stepY=0;
-    private int stepX=0;
+    private int x = 0;
+    private int y = 0;
+    private int stepY = 0;
+    private int stepX = 0;
+    protected int defaultX;
+    protected int defaultY;
+    private Bitmap bmp;
+    private Context context;
+
+    public Fish(Context context) {
+        this.context = context;
+    }
+
+    private Context getContext() {
+
+        return context;
+    }
+
     private Bitmap src;
-    LiveWallpaperService service=new LiveWallpaperService();
+
+
+    protected void setDefaultX(int defaultX) {
+        this.defaultX = defaultX;
+    }
+
+    protected void setDefaultY(int defaultY) {
+        this.defaultY = defaultY;
+    }
 
     public int getStepX() {
         return stepX;
+    }
+
+    public void plusX(int step){
+
+        x=x+step;
+    }
+
+    public void plusY(int step){
+        y=y+step;
     }
 
     public int getStepY() {
@@ -28,15 +61,15 @@ public abstract class Fish {
         return y;
     }
 
-    private void setY(int y) {
-        this.y = y;
-    }
-
     public int getX() {
         return x;
     }
 
-    private void setX(int x) {
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setX(int x) {
         this.x = x;
     }
 
@@ -46,15 +79,23 @@ public abstract class Fish {
     }
 
     protected void setStep(int xPlus, int yPlus) {
-        stepX=xPlus;
-        stepY=yPlus;
+        stepX = xPlus;
+        stepY = yPlus;
     }
 
-//    protected Context getContext(){
-////        LiveWallpaperService.MyWallpaperEngine myWallpaperEngine= (LiveWallpaperService.MyWallpaperEngine) service.onCreateEngine();
-////        Context context=myWallpaperEngine.getContext();
-////        return context;
-//    }
-    abstract Bitmap getImageFish();
+    protected void setImageFish(int R) {
+        bmp = BitmapFactory.decodeResource(context.getResources(), R);
+    }
+
+    public void reset() {
+        setX(defaultX);
+        setY(defaultY);
+    }
+
+    public Bitmap getImageFish() {
+        return bmp;
+    }
+
+    ;
 
 }
