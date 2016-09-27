@@ -3,6 +3,7 @@ package com.mashazavolnyuk.aquarium;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 
 /**
  * Created by Dark Maleficent on 20.09.2016.
@@ -19,18 +20,12 @@ public class Fish {
     protected int defaultY;
     private Bitmap bmp;
     private Context context;
+    private boolean newDirection = false;
+    private int R;
 
     public Fish(Context context) {
         this.context = context;
     }
-
-    private Context getContext() {
-
-        return context;
-    }
-
-    private Bitmap src;
-
 
     protected void setDefaultX(int defaultX) {
         this.defaultX = defaultX;
@@ -42,15 +37,6 @@ public class Fish {
 
     public int getStepX() {
         return stepX;
-    }
-
-    public void plusX(int step){
-
-        x=x+step;
-    }
-
-    public void plusY(int step){
-        y=y+step;
     }
 
     public int getStepY() {
@@ -84,12 +70,36 @@ public class Fish {
     }
 
     protected void setImageFish(int R) {
+        this.R = R;
         bmp = BitmapFactory.decodeResource(context.getResources(), R);
     }
 
+    private void setImageFish(Bitmap reflection) {
+
+        bmp = reflection;
+    }
+
     public void reset() {
+
+        if (newDirection == false) {
+            newDirection = true;
+            setImageFish(getReflectionImage());
+
+        } else {
+            newDirection = false;
+            setImageFish(R);
+        }
+
         setX(defaultX);
         setY(defaultY);
+    }
+
+    private Bitmap getReflectionImage() {
+        Matrix matrix = new Matrix();
+        matrix.setRotate(180);
+        matrix.preScale(1.0f, -1.0f);
+        Bitmap resizedBitmap = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
+        return resizedBitmap;
     }
 
     public Bitmap getImageFish() {
