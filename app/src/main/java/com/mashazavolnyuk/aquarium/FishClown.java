@@ -12,7 +12,7 @@ public class FishClown extends Fish {
 
 
     public FishClown(Context c,int width,int height){
-        super(c);
+        super(c,width,height);
         setImageFish(R.mipmap.clownfish);
         defaultX=width/9;
         defaultY=height/8;
@@ -20,7 +20,7 @@ public class FishClown extends Fish {
         setDefaultY(defaultY);
         setY(defaultY);
         setX(defaultX);
-        setStep(13,3);
+        setStep(13,0);
 
     }
 

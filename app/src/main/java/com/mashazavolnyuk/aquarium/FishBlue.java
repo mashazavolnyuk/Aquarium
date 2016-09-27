@@ -10,14 +10,31 @@ import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
 
 public class FishBlue extends Fish {
 
-    public FishBlue(Context context,int width,int height) {
-        super(context);
+    int x = 0;
+    int y = 0;
+
+    public FishBlue(Context context, int width, int height) {
+        super(context, width, height);
         setImageFish(R.mipmap.fish);
-        int x=width/9;
-        int y=height/5;
+        x = width / 9;
+        y = height / 5;
         setDefaultX(x);
         setDefaultX(y);
-        setStep(-20,0);
+        setStep(-20, 0);
+        setX(x);
+        setY(y);
+    }
+
+    public FishBlue(Context context, int width, int height, int x, int y, int step) {
+        super(context, width, height);
+        setImageFish(R.mipmap.fish);
+        this.x = x;
+        this.y = y;
+        setDefaultX(x);
+        setDefaultX(y);
+        setStep(step, 0);
+        if (step > 0)
+            reset();
         setX(x);
         setY(y);
     }

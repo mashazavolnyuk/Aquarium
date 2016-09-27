@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
+import java.util.Random;
+
 /**
  * Created by Dark Maleficent on 20.09.2016.
  */
@@ -22,8 +24,12 @@ public class Fish {
     private Context context;
     private boolean newDirection = false;
     private int R;
+    int width = 0;
+    int height = 0;
 
-    public Fish(Context context) {
+    public Fish(Context context, int width, int height) {
+        this.width = width;
+        this.height = height;
         this.context = context;
     }
 
@@ -84,14 +90,48 @@ public class Fish {
         if (newDirection == false) {
             newDirection = true;
             setImageFish(getReflectionImage());
-
         } else {
             newDirection = false;
             setImageFish(R);
         }
+        turnDirection();
 
-        setX(defaultX);
-        setY(defaultY);
+    }
+
+    private void turnDirection() {
+
+        turnDefaultDirection();
+        // turnStepDirection();
+    }
+
+    private void turnDefaultDirection() {
+
+        Random r = new Random();
+        int result = r.nextInt(height)+1;
+
+        if (x < 0) {
+            setX(1);
+            setY(result);
+            if (stepX < 0)
+                setStep(stepX * -1, stepY);
+            else
+                setStep(stepX, stepY);
+
+        } else {
+            setX(defaultX);
+            setY(result);
+            if (stepX > 0)
+                setStep(stepX * -1, stepY);
+        }
+    }
+
+    private void turnStepDirection() {
+        if (stepX < 0)
+            setStep(stepX * -1, stepY);
+        else
+            setStep(stepX, stepY);
+
+
     }
 
     private Bitmap getReflectionImage() {

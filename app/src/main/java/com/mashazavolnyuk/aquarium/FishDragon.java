@@ -11,13 +11,14 @@ import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
 public class FishDragon extends Fish {
 
     public FishDragon(Context context,int width,int height) {
-        super(context);
+        super(context,width,height);
         setImageFish(R.mipmap.rotfeuerfisch);
+        reset();
         defaultX=width-width/3;
         defaultY =height-height/2;
         setDefaultX(defaultX);
         setDefaultX(defaultY);
-        setStep(-20,0);
+        setStep(-5,0);
         setX(defaultX);
         setY(defaultY);
     }
