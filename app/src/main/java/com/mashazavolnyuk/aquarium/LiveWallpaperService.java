@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.service.wallpaper.WallpaperService;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -36,6 +37,7 @@ public class LiveWallpaperService extends WallpaperService {
     }
 
     class MyWallpaperEngine extends Engine {
+        private long lastFrameMillis;
         Context c = getApplicationContext();
         private final List<Fish> fishes = new ArrayList<>();
         private final Handler handler = new Handler();
@@ -135,14 +137,17 @@ public class LiveWallpaperService extends WallpaperService {
                 int height = c.getHeight();
                 Log.d("height", "w" + c.getHeight());
 
-                for (Fish fish : fishes) {
-                    if (fish.getX() > 0 & fish.getX() < width) {
-                        fish.setX(fish.getX() + fish.getStepX());
-                        fish.setY(fish.getY() + fish.getStepY());
-                    } else {
-                        fish.reset();
-                    }
+                int frameTime = 0;
+                long currentMillis = SystemClock.uptimeMillis();
+                if(lastFrameMillis != 0){
+                    frameTime = (int)(currentMillis - lastFrameMillis);
                 }
+                lastFrameMillis = currentMillis;
+                for (Fish fish : fishes) {
+                    fish.nextStep(frameTime);
+                }
+
+
                 if (yBubble<=height&&yBubble>0) {
                     yBubble = yBubble - 20;
                     //c.drawBitmap(bubbles, xBubble, yBubble, null);

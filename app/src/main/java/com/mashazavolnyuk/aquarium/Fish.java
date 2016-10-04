@@ -13,43 +13,31 @@ import java.util.Random;
 
 public class Fish {
 
-    protected int x = 0;
-    protected int y = 0;
-    private int stepY = 0;
-    private int stepX = 0;
+    protected float x = 0;
+    protected float y = 0;
+
+
+    private float velocityY = 0;
+    private float velocityX = 0;
     private Bitmap bmp;
-    private Context context;
     private boolean newDirection = false;
-    private int R;
 
-
-    private double speedWithDirection;
-
-    public Fish(Context context) {
-        this.context = context;
+    public Fish() {
     }
 
-    public int getStepX() {
-        return stepX;
-    }
-
-    public int getStepY() {
-        return stepY;
-    }
-
-    public int getY() {
+    public float getY() {
         return y;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
@@ -58,18 +46,21 @@ public class Fish {
         setY(y);
     }
 
-    protected void setStep(int xPlus, int yPlus) {
-        stepX = xPlus;
-        stepY = yPlus;
+    /**
+     *
+     * @param velocityX - velocity by width in pixels/second
+     * @param velocityY - velocity by height in pixels/second
+     */
+    protected void setVelocity(float velocityX, float velocityY) {
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
     }
 
-    protected void setImageFish(int R) {
-        this.R = R;
+    protected void setImageFish(Context context, int R) {
         bmp = BitmapFactory.decodeResource(context.getResources(), R);
     }
 
     private void setImageFish(Bitmap reflection) {
-
         bmp = reflection;
     }
 
@@ -77,13 +68,11 @@ public class Fish {
 
         if (newDirection == false) {
             newDirection = true;
-            setImageFish(getReflectionImage());
+            bmp = getReflectionImage();
         } else {
             newDirection = false;
-            setImageFish(R);
         }
         turnDirection();
-
     }
 
     private void turnDirection() {
@@ -100,27 +89,25 @@ public class Fish {
         if (x < 0) {
             setX(1);
             setY(result);
-            if (stepX < 0)
-                setStep(stepX * -1, stepY);
+            if (velocityX < 0)
+                setVelocity(velocityX * -1, velocityY);
             else
-                setStep(stepX, stepY);
+                setVelocity(velocityX, velocityY);
 
         } else {
             //todo setrandom
             setX(0);
             setY(result);
-            if (stepX > 0)
-                setStep(stepX * -1, stepY);
+            if (velocityX > 0)
+                setVelocity(velocityX * -1, velocityY);
         }
     }
 
     private void turnStepDirection() {
-        if (stepX < 0)
-            setStep(stepX * -1, stepY);
+        if (velocityX < 0)
+            setVelocity(velocityX * -1, velocityY);
         else
-            setStep(stepX, stepY);
-
-
+            setVelocity(velocityX, velocityY);
     }
 
     private Bitmap getReflectionImage() {
@@ -135,8 +122,16 @@ public class Fish {
         return bmp;
     }
 
-    public void nextStep(){
-
+    public void nextStep(int timeMillis){
+        float distanceX = (float)timeMillis / 1000 * velocityX;
+        float distanceY = (float)timeMillis / 1000 * velocityY;
+        if (x > bmp.getWidth() && x < LiveWallpaperService.backgroundWidth
+                && y > bmp.getHeight() && y < LiveWallpaperService.backgroundHeight) {
+            x += distanceX;
+            y += distanceY;
+        } else {
+            reset();
+        }
     }
 
 }
