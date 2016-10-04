@@ -10,14 +10,14 @@ import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
 
 public class FishDragon extends Fish {
 
-    public FishDragon(Context context,int width,int height) {
-        super(context,width,height);
+    public FishDragon(Context context) {
+        super(context);
         setImageFish(R.mipmap.rotfeuerfisch);
         reset();
-        defaultX=width-width/3;
-        defaultY =height-height/2;
+        defaultX = LiveWallpaperService.backgroundWidth - LiveWallpaperService.backgroundWidth / 3;
+        defaultY = LiveWallpaperService.backgroundHeight - LiveWallpaperService.backgroundHeight / 2;
         setDefaultX(defaultX);
-        setDefaultX(defaultY);
+        setDefaultY(defaultY);
         setStep(-5,0);
         setX(defaultX);
         setY(defaultY);

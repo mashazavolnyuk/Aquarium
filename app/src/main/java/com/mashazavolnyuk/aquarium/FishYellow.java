@@ -11,11 +11,11 @@ public class FishYellow extends Fish {
     int x = 0;
     int y = 0;
 
-    public FishYellow(Context context, int width, int height) {
-        super(context, width, height);
+    public FishYellow(Context context) {
+        super(context);
         setImageFish(com.aquarium.mashazavolnyuk.mashazavolnyuk.R.mipmap.yellowtang);
-        defaultX = width / 9;
-        defaultY = height / 2;
+        defaultX = LiveWallpaperService.backgroundWidth / 9;
+        defaultY = LiveWallpaperService.backgroundHeight / 2;
         setDefaultX(defaultX);
         setDefaultY(defaultY);
         setY(defaultY);
@@ -23,11 +23,11 @@ public class FishYellow extends Fish {
         setStep(-9,0);
     }
 
-    public FishYellow(Context context, int width, int height, int x, int y, int step) {
-        super(context, width, height);
+    public FishYellow(Context context, int x, int y, int step) {
+        super(context);
         setImageFish(com.aquarium.mashazavolnyuk.mashazavolnyuk.R.mipmap.yellowtang);
-        x = x;
-        y = y;
+        this.x = x;
+        this.y = y;
         setDefaultX(x);
         setDefaultX(y);
         setStep(step, 0);

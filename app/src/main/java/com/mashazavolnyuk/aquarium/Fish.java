@@ -13,7 +13,6 @@ import java.util.Random;
 
 public class Fish {
 
-
     private int x = 0;
     private int y = 0;
     private int stepY = 0;
@@ -24,12 +23,11 @@ public class Fish {
     private Context context;
     private boolean newDirection = false;
     private int R;
-    int width = 0;
-    int height = 0;
 
-    public Fish(Context context, int width, int height) {
-        this.width = width;
-        this.height = height;
+
+    private double speedWithDirection;
+
+    public Fish(Context context) {
         this.context = context;
     }
 
@@ -107,7 +105,7 @@ public class Fish {
     private void turnDefaultDirection() {
 
         Random r = new Random();
-        int result = r.nextInt(height)+1;
+        int result = r.nextInt(LiveWallpaperService.backgroundHeight)+1;
 
         if (x < 0) {
             setX(1);
@@ -146,6 +144,8 @@ public class Fish {
         return bmp;
     }
 
-    ;
+    public void nextStep(){
+
+    }
 
 }

@@ -11,11 +11,11 @@ import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
 public class FishClown extends Fish {
 
 
-    public FishClown(Context c,int width,int height){
-        super(c,width,height);
+    public FishClown(Context c){
+        super(c);
         setImageFish(R.mipmap.clownfish);
-        defaultX=width/9;
-        defaultY=height/8;
+        defaultX = LiveWallpaperService.backgroundWidth / 9;
+        defaultY = LiveWallpaperService.backgroundHeight / 8;
         setDefaultX(defaultX);
         setDefaultY(defaultY);
         setY(defaultY);

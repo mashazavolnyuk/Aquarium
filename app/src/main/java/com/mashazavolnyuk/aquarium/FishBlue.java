@@ -13,25 +13,25 @@ public class FishBlue extends Fish {
     int x = 0;
     int y = 0;
 
-    public FishBlue(Context context, int width, int height) {
-        super(context, width, height);
+    public FishBlue(Context context) {
+        super(context);
         setImageFish(R.mipmap.fish);
-        x = width / 9;
-        y = height / 5;
+        x = LiveWallpaperService.backgroundWidth / 9;
+        y = LiveWallpaperService.backgroundHeight / 5;
         setDefaultX(x);
-        setDefaultX(y);
+        setDefaultY(y);
         setStep(-20, 0);
         setX(x);
         setY(y);
     }
 
-    public FishBlue(Context context, int width, int height, int x, int y, int step) {
-        super(context, width, height);
+    public FishBlue(Context context, int x, int y, int step) {
+        super(context);
         setImageFish(R.mipmap.fish);
         this.x = x;
         this.y = y;
         setDefaultX(x);
-        setDefaultX(y);
+        setDefaultY(y);
         setStep(step, 0);
         if (step > 0)
             reset();

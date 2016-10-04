@@ -25,10 +25,10 @@ import java.util.List;
 
 public class LiveWallpaperService extends WallpaperService {
 
+    public static int backgroundWidth = 0;
+    public static int backgroundHeight = 0;
 
-    int x, y;
     int xBubble, yBubble;
-    int xWater, yWater;
 
     @Override
     public Engine onCreateEngine() {
@@ -49,8 +49,7 @@ public class LiveWallpaperService extends WallpaperService {
         private boolean visible = true;
         public Bitmap backgroundImage, bubbles, water;
         private Paint paint;
-        int backgroundWidth = 0;
-        int backgroundHeght = 0;
+
 
         public Context getContext() {
             return c;
@@ -65,13 +64,11 @@ public class LiveWallpaperService extends WallpaperService {
 
             backgroundWidth = backgroundImage.getWidth();
 
-            backgroundHeght = backgroundImage.getHeight();
+            backgroundHeight = backgroundImage.getHeight();
             backgroundImage.getHeight();
             xBubble = 0;
             yBubble = 0;
-            xWater = 0;
-            yWater = 0;
-            yBubble = backgroundHeght/6;
+            yBubble = backgroundHeight /6;
             xBubble = backgroundWidth /2;
             fillDataFishes();
 
@@ -80,12 +77,12 @@ public class LiveWallpaperService extends WallpaperService {
 
         private void fillDataFishes() {
             fishes.clear();
-            fishes.add(new FishBlue(c, backgroundWidth, backgroundHeght));
-            fishes.add(new FishBlue(c,backgroundWidth,backgroundHeght,backgroundWidth/3+backgroundWidth/4,backgroundHeght/2-backgroundHeght/7,-20));
-            fishes.add(new FishClown(c, backgroundWidth, backgroundHeght));
-            fishes.add(new FishDragon(c, backgroundWidth, backgroundHeght));
-            fishes.add(new FishYellow(c, backgroundWidth, backgroundHeght));
-           // fishes.add(new FishYellow(c, backgroundWidth, backgroundHeght, backgroundWidth / 4 + backgroundWidth / 2, backgroundHeght / 2 - backgroundHeght / 6, 10));
+            fishes.add(new FishBlue(c));
+            fishes.add(new FishBlue(c,backgroundWidth/3+backgroundWidth/4, backgroundHeight /2- backgroundHeight /7,-20));
+            fishes.add(new FishClown(c));
+            fishes.add(new FishDragon(c));
+            fishes.add(new FishYellow(c));
+           // fishes.add(new FishYellow(c, backgroundWidth, backgroundHeight, backgroundWidth / 4 + backgroundWidth / 2, backgroundHeight / 2 - backgroundHeight / 6, 10));
 
         }
 
@@ -153,9 +150,9 @@ public class LiveWallpaperService extends WallpaperService {
                 }
                 else{
 
-                    yBubble = backgroundHeght;
+                    yBubble = backgroundHeight;
                     xBubble = backgroundWidth /2;
-                    if(backgroundHeght>height)
+                    if(backgroundHeight >height)
                         yBubble=height;
                     Log.d("yBubble"," "+yBubble);
                 }
@@ -179,8 +176,7 @@ public class LiveWallpaperService extends WallpaperService {
             super.onTouchEvent(event);
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    x = 0;
-                    y = 0;
+                    break;
             }
         }
     }
