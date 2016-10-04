@@ -14,12 +14,8 @@ public class FishClown extends Fish {
     public FishClown(Context c){
         super(c);
         setImageFish(R.mipmap.clownfish);
-        defaultX = LiveWallpaperService.backgroundWidth / 9;
-        defaultY = LiveWallpaperService.backgroundHeight / 8;
-        setDefaultX(defaultX);
-        setDefaultY(defaultY);
-        setY(defaultY);
-        setX(defaultX);
+        x = LiveWallpaperService.backgroundWidth / 9;
+        y = LiveWallpaperService.backgroundHeight / 8;
         setStep(13,0);
 
     }

@@ -10,19 +10,12 @@ import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
 
 public class FishBlue extends Fish {
 
-    int x = 0;
-    int y = 0;
-
     public FishBlue(Context context) {
         super(context);
         setImageFish(R.mipmap.fish);
         x = LiveWallpaperService.backgroundWidth / 9;
         y = LiveWallpaperService.backgroundHeight / 5;
-        setDefaultX(x);
-        setDefaultY(y);
         setStep(-20, 0);
-        setX(x);
-        setY(y);
     }
 
     public FishBlue(Context context, int x, int y, int step) {
@@ -30,13 +23,9 @@ public class FishBlue extends Fish {
         setImageFish(R.mipmap.fish);
         this.x = x;
         this.y = y;
-        setDefaultX(x);
-        setDefaultY(y);
         setStep(step, 0);
         if (step > 0)
             reset();
-        setX(x);
-        setY(y);
     }
 
 }

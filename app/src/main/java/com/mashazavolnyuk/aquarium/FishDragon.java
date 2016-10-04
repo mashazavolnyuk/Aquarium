@@ -14,12 +14,8 @@ public class FishDragon extends Fish {
         super(context);
         setImageFish(R.mipmap.rotfeuerfisch);
         reset();
-        defaultX = LiveWallpaperService.backgroundWidth - LiveWallpaperService.backgroundWidth / 3;
-        defaultY = LiveWallpaperService.backgroundHeight - LiveWallpaperService.backgroundHeight / 2;
-        setDefaultX(defaultX);
-        setDefaultY(defaultY);
         setStep(-5,0);
-        setX(defaultX);
-        setY(defaultY);
+        x = LiveWallpaperService.backgroundWidth - LiveWallpaperService.backgroundWidth / 3;
+        y = LiveWallpaperService.backgroundHeight - LiveWallpaperService.backgroundHeight / 2;
     }
 }

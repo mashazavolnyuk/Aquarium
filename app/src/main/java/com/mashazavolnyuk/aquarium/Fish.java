@@ -13,12 +13,10 @@ import java.util.Random;
 
 public class Fish {
 
-    private int x = 0;
-    private int y = 0;
+    protected int x = 0;
+    protected int y = 0;
     private int stepY = 0;
     private int stepX = 0;
-    protected int defaultX;
-    protected int defaultY;
     private Bitmap bmp;
     private Context context;
     private boolean newDirection = false;
@@ -29,14 +27,6 @@ public class Fish {
 
     public Fish(Context context) {
         this.context = context;
-    }
-
-    protected void setDefaultX(int defaultX) {
-        this.defaultX = defaultX;
-    }
-
-    protected void setDefaultY(int defaultY) {
-        this.defaultY = defaultY;
     }
 
     public int getStepX() {
@@ -116,7 +106,8 @@ public class Fish {
                 setStep(stepX, stepY);
 
         } else {
-            setX(defaultX);
+            //todo setrandom
+            setX(0);
             setY(result);
             if (stepX > 0)
                 setStep(stepX * -1, stepY);
