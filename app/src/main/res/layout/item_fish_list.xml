@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgfish"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dp"
+        android:background="@mipmap/bannerfish" />
+
+    <TextView
+        android:paddingLeft="6dp"
+        android:id="@+id/tvNameFish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@id/imgfish"
+        android:text="#fish"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorPrimarytext"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:layout_toRightOf="@id/imgfish" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/swFish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:button="@null"
+        android:padding="20dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/secondary_text"
+        android:textOff=""
+        android:textOn="" />
+
+</RelativeLayout>

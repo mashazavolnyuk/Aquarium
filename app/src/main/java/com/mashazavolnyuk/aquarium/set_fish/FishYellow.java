@@ -1,6 +1,8 @@
-package com.mashazavolnyuk.aquarium;
+package com.mashazavolnyuk.aquarium.set_fish;
 
 import android.content.Context;
+
+import com.mashazavolnyuk.aquarium.Fish;
 
 /**
  * Created by Dark Maleficent on 27.09.2016.

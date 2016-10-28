@@ -16,6 +16,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
+import com.mashazavolnyuk.aquarium.set_fish.FishBlue;
+import com.mashazavolnyuk.aquarium.set_fish.FishClown;
+import com.mashazavolnyuk.aquarium.set_fish.FishDragon;
+import com.mashazavolnyuk.aquarium.set_fish.FishYellow;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
+import com.mashazavolnyuk.aquarium.fragments.FragmentMain;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
@@ -31,11 +32,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toMain();
     }
 
     private void loggin() {
         VKSdk.login(this, scope);
-        loadPhotoToMyWall( "qw");
+        loadPhotoToMyWall("qw");
+
+    }
+
+    private void toMain() {
+        FragmentMain fragmentMain=new FragmentMain();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.mainContent, fragmentMain)
+                .setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("main")
+                .commit();
+    }
+
+    private void toSettings() {
+
 
     }
 
@@ -51,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(VKResponse response) {
                 // post was added
             }
+
             @Override
             public void onError(VKError error) {
                 // error
@@ -58,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void loadPhotoToMyWall( final String message) {
-        Bitmap bitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.clownfish);
+    void loadPhotoToMyWall(final String message) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.clownfish);
         VKRequest request = VKApi.uploadWallPhotoRequest(new VKUploadImage(bitmap,
                 VKImageParameters.jpgImage(0.9f)), getMyId(), 0);
         request.executeWithListener(new VKRequest.VKRequestListener() {
