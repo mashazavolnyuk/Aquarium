@@ -12,10 +12,7 @@ public class FishClown extends Fish {
 
 
     public FishClown(Context context){
-        setImageFish(context, R.mipmap.clownfish);
-        x = LiveWallpaperService.backgroundWidth / 9;
-        y = LiveWallpaperService.backgroundHeight / 8;
-        setVelocity(13,0);
+        super(context, R.mipmap.clownfish);
     }
 
 }

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aquarium.mashazavolnyuk.mashazavolnyuk">
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
 
     <uses-feature
         android:name="android.software.live_wallpaper"
-        android:required="true" >
-    </uses-feature>
+        android:required="true"></uses-feature>
 
 
     <application
+        android:name="com.mashazavolnyuk.aquarium.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,17 +30,18 @@
             android:name="com.mashazavolnyuk.aquarium.LiveWallpaperService"
             android:enabled="true"
             android:label="Wallpaper Example "
-            android:permission="android.permission.BIND_WALLPAPER" >
+            android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
-                <action android:name="android.service.wallpaper.WallpaperService" >
-                </action>
+                <action android:name="android.service.wallpaper.WallpaperService"></action>
             </intent-filter>
             <meta-data
                 android:name="android.service.wallpaper"
-                android:resource="@drawable/mywallpaper" >
-            </meta-data>
+                android:resource="@drawable/mywallpaper"></meta-data>
         </service>
-
+        <activity
+            android:name="com.vk.sdk.VKServiceActivity"
+            android:label="ServiceActivity"
+            android:theme="@style/VK.Transparent" />
     </application>
 
 </manifest>

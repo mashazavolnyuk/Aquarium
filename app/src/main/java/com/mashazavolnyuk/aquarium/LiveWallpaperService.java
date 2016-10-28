@@ -28,6 +28,7 @@ public class LiveWallpaperService extends WallpaperService {
 
     public static int backgroundWidth = 0;
     public static int backgroundHeight = 0;
+    public static float density;
 
     int xBubble, yBubble;
 
@@ -58,34 +59,28 @@ public class LiveWallpaperService extends WallpaperService {
         }
 
         MyWallpaperEngine() {
-            // get the fish and background image references
             paint = new Paint();
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
             bubbles=BitmapFactory.decodeResource(getResources(),R.mipmap.bubbles);
             backgroundImage = BitmapFactory.decodeResource(getResources(), R.mipmap.background);
-
             backgroundWidth = backgroundImage.getWidth();
-
             backgroundHeight = backgroundImage.getHeight();
             backgroundImage.getHeight();
             xBubble = 0;
             yBubble = 0;
             yBubble = backgroundHeight /6;
             xBubble = backgroundWidth /2;
+            density = getResources().getDisplayMetrics().density;
             fillDataFishes();
-
-
         }
 
         private void fillDataFishes() {
             fishes.clear();
             fishes.add(new FishBlue(c));
-            fishes.add(new FishBlue(c,backgroundWidth/3+backgroundWidth/4, backgroundHeight /2- backgroundHeight /7,-20));
+            fishes.add(new FishBlue(c));
             fishes.add(new FishClown(c));
             fishes.add(new FishDragon(c));
             fishes.add(new FishYellow(c));
-           // fishes.add(new FishYellow(c, backgroundWidth, backgroundHeight, backgroundWidth / 4 + backgroundWidth / 2, backgroundHeight / 2 - backgroundHeight / 6, 10));
-
         }
 
         public void onCreate(SurfaceHolder surfaceHolder) {
@@ -120,8 +115,9 @@ public class LiveWallpaperService extends WallpaperService {
 
             try {
                 c = holder.lockCanvas();
-                c.drawColor(Color.BLACK);
+
                 if (c != null) {
+                    c.drawColor(Color.BLACK);
                     c.drawBitmap(backgroundImage, 0, 0, null);
                     c.drawBitmap(bubbles, xBubble, yBubble, null);
                     for (Fish fish : fishes) {
@@ -136,7 +132,6 @@ public class LiveWallpaperService extends WallpaperService {
                 Log.d("width", "w" + c.getWidth());
                 int height = c.getHeight();
                 Log.d("height", "w" + c.getHeight());
-
                 int frameTime = 0;
                 long currentMillis = SystemClock.uptimeMillis();
                 if(lastFrameMillis != 0){
@@ -146,8 +141,6 @@ public class LiveWallpaperService extends WallpaperService {
                 for (Fish fish : fishes) {
                     fish.nextStep(frameTime);
                 }
-
-
                 if (yBubble<=height&&yBubble>0) {
                     yBubble = yBubble - 20;
                     //c.drawBitmap(bubbles, xBubble, yBubble, null);
@@ -161,9 +154,6 @@ public class LiveWallpaperService extends WallpaperService {
                         yBubble=height;
                     Log.d("yBubble"," "+yBubble);
                 }
-
-
-
             }//try+
             finally {
                 if (c != null)
@@ -173,9 +163,7 @@ public class LiveWallpaperService extends WallpaperService {
             if (visible) {
                 handler.postDelayed(drawRunner, 60); // delay 10 mileseconds
             }
-
         }
-
         @Override
         public void onTouchEvent(MotionEvent event) {
             super.onTouchEvent(event);

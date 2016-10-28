@@ -11,19 +11,7 @@ import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
 public class FishBlue extends Fish {
 
     public FishBlue(Context context) {
-        setImageFish(context, R.mipmap.fish);
-        x = LiveWallpaperService.backgroundWidth / 9;
-        y = LiveWallpaperService.backgroundHeight / 5;
-        setVelocity(-20, 0);
+        super(context, R.mipmap.fish);
+        speedMulti = 1.5f;
     }
-
-    public FishBlue(Context context, int x, int y, int step) {
-        setImageFish(context, R.mipmap.fish);
-        this.x = x;
-        this.y = y;
-        setVelocity(step, 0);
-        if (step > 0)
-            reset();
-    }
-
 }

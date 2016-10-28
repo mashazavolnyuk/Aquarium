@@ -11,10 +11,7 @@ import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
 public class FishDragon extends Fish {
 
     public FishDragon(Context context) {
-        setImageFish(context, R.mipmap.rotfeuerfisch);
-        reset();
-        setVelocity(-5,0);
-        x = LiveWallpaperService.backgroundWidth - LiveWallpaperService.backgroundWidth / 3;
-        y = LiveWallpaperService.backgroundHeight - LiveWallpaperService.backgroundHeight / 2;
+        super(context, R.mipmap.rotfeuerfisch);
+        speedMulti = 0.5f;
     }
 }
