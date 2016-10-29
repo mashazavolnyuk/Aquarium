@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.aquarium.mashazavolnyuk.mashazavolnyuk.R;
 import com.mashazavolnyuk.aquarium.fragments.FragmentMain;
+import com.mashazavolnyuk.aquarium.fragments.FragmentSettings;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toMain();
+        toSettings();
     }
 
     private void loggin() {
@@ -52,7 +53,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toSettings() {
-
+        FragmentSettings fragmentMain=new FragmentSettings();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.mainContent, fragmentMain)
+                .setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("setting")
+                .commit();
 
     }
 

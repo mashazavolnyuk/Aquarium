@@ -27,7 +27,8 @@
         android:textStyle="italic"
         android:layout_toRightOf="@id/imgfish" />
 
-    <android.support.v7.widget.SwitchCompat
+    <Switch
+        android:thumb="@drawable/ic_switch"
         android:id="@+id/swFish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +38,7 @@
         android:padding="20dp"
         android:gravity="center_vertical"
         android:textColor="@color/secondary_text"
-        android:textOff=""
-        android:textOn="" />
+        android:textOff="off"
+        android:textOn="on" />
 
 </RelativeLayout>

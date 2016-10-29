@@ -119,7 +119,6 @@ public class LiveWallpaperService extends WallpaperService {
 
             try {
                 c = holder.lockCanvas();
-
                 if (c != null) {
                     c.drawColor(Color.BLACK);
                     c.drawBitmap(backgroundImage, 0, 0, null);
@@ -151,7 +150,6 @@ public class LiveWallpaperService extends WallpaperService {
                     Log.d("yBubble", " " + yBubble);
                 }
                 else{
-
                     yBubble = backgroundHeight;
                     xBubble = backgroundWidth /2;
                     if(backgroundHeight >height)
